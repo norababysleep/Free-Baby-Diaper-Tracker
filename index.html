@@ -1,1028 +1,306 @@
-
-                       
-                            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free baby diaper tracker online—no download, no sign-up. Track wet, dirty & combined diapers for newborns. Works on mobile, saves data locally, and 100% free.">
-    <title>Free Baby Diaper Tracker Online App | Nora Baby Sleep</title>
-    <style>
-        :root {
-            --primary: #8ecae6;
-            --secondary: #219ebc;
-            --accent: #ffb703;
-            --light: #f8f9fa;
-            --dark: #22223b;
-            --success: #a7c957;
-            --warning: #e76f51;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f5f7fa;
-            padding: 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        h1 {
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-            font-size: 1.8rem;
-        }
-
-        .brand-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .brand-link:hover {
-            text-decoration: underline;
-        }
-
-        section {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
-        }
-
-        section:hover {
-            box-shadow: 0 6px 12px rgba(0,0,0,0.12);
-        }
-
-        h2 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        select, input, textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        select:focus, input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(142, 202, 230, 0.3);
-        }
-
-        textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--secondary);
-        }
-
-        .btn-wet {
-            background-color: #d0f4f7;
-            color: var(--dark);
-        }
-
-        .btn-dirty {
-            background-color: #fde2e4;
-            color: var(--dark);
-        }
-
-        .btn-both {
-            background-color: #e2eafc;
-            color: var(--dark);
-        }
-
-        .btn-danger {
-            background-color: var(--warning);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            opacity: 0.9;
-        }
-
-        .btn-success {
-            background-color: var(--success);
-            color: white;
-        }
-
-        .btn-shop {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            color: var(--dark);
-            font-weight: 700;
-            text-align: center;
-            margin: 1.5rem auto;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 4px 12px rgba(255, 154, 158, 0.4);
-            max-width: 600px;
-            width: 100%;
-            font-size: 1.1rem;
-        }
-
-        .btn-shop:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(255, 154, 158, 0.6);
-        }
-
-        .btn-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 0.75rem;
-            margin: 1rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .stat-card {
-            background: var(--light);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            border-left: 4px solid var(--primary);
-            transition: var(--transition);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin: 0.5rem 0;
-            transition: all 0.5s ease-out;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .history-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .history-controls > * {
-            flex: 1;
-            min-width: 140px;
-        }
-
-        .history-item {
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            transition: background 0.2s;
-        }
-
-        .history-item:hover {
-            background-color: #fafafa;
-        }
-
-        .history-item:last-child {
-            border-bottom: none;
-        }
-
-        .history-content {
-            flex: 1;
-            margin-right: 1rem;
-        }
-
-        .history-type {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .type-wet {
-            background-color: #d0f4f7;
-            color: #0a5e6a;
-        }
-
-        .type-dirty {
-            background-color: #fde2e4;
-            color: #a02c35;
-        }
-
-        .type-both {
-            background-color: #e2eafc;
-            color: #3a4eb8;
-        }
-
-        .history-time {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 0.25rem;
-        }
-
-        .history-notes {
-            font-style: italic;
-            color: #555;
-        }
-
-        .history-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .action-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-
-        .action-btn:hover {
-            background-color: #f0f0f0;
-        }
-
-        .action-edit {
-            color: var(--secondary);
-        }
-
-        .action-delete {
-            color: var(--warning);
-        }
-
-        .export-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .export-section > * {
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .health-tips, .parenting-tips, .reviews-section, .tools-section, .how-to-section, .faq-section {
-            background-color: #f0f9ff;
-            border-left: 4px solid var(--primary);
-            padding: 1rem;
-        }
-
-        .parenting-tips ul, .tools-list, .how-to-steps {
-            padding-left: 1.25rem;
-            margin-top: 0.5rem;
-        }
-
-        .parenting-tips li, .tools-list li, .how-to-steps li {
-            margin-bottom: 0.6rem;
-        }
-
-        .tools-list li a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .tools-list li a:hover {
-            text-decoration: underline;
-        }
-
-        .review {
-            background: white;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 3px solid var(--accent);
-        }
-
-        .review-author {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 0.25rem;
-        }
-
-        .review-text {
-            font-style: italic;
-            color: #555;
-        }
-
-        .faq-section h3 {
-            margin: 1.2rem 0 0.6rem;
-            color: var(--secondary);
-            font-size: 1.1rem;
-        }
-
-        .faq-section p {
-            margin-bottom: 0.8rem;
-            color: #444;
-        }
-
-        #showMoreBtn {
-            display: none; /* Hidden since we show all FAQs */
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--success);
-            color: white;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 1000;
-            transform: translateX(200%);
-            transition: transform 0.3s ease;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        @media (max-width: 600px) {
-            .btn-group { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .history-item { flex-direction: column; gap: 0.75rem; }
-            .history-actions { align-self: flex-end; }
-            .history-controls { flex-direction: column; gap: 0.75rem; }
-            .btn-shop {
-                font-size: 1rem;
-                padding: 0.9rem 1.2rem;
-            }
-        }
-
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
-
-        @media print {
-            body { background: white; padding: 0; }
-            .no-print { display: none !important; }
-            section { box-shadow: none; margin-bottom: 1rem; }
-            .notification, .btn-shop { display: none; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free baby diaper tracker online—no download, no sign-up. Track wet, dirty & combined diapers for newborns. Works on mobile, saves data locally, and 100% free." />
+  <title>Free Baby Diaper Tracker Online App | Nora Baby Sleep</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <header>
-        <h1>Free Baby Diaper Tracker</h1>
-        <a href="https://norababysleep.store" class="brand-link" target="_blank" rel="noopener">More Tools at Nora Baby Sleep</a>
-    </header>
-
-    <div id="notification" class="notification">Entry saved successfully!</div>
-
-    <main>
-        <section>
-            <h2>Track Diapers for Newborns & Toddlers</h2>
-            <p>Log wet, dirty, or combined diaper changes with timestamps and notes. This tool works in any browser—no installation, no account, no ads.</p>
-        </section>
-
-        <section class="how-to-section">
-            <h2>How to Use This Diaper Tracker</h2>
-            <ol class="how-to-steps">
-                <li><strong>Enter your baby’s name</strong> (e.g., “Liam” or “Sophia”)—this helps when tracking multiple children.</li>
-                <li><strong>Tap a diaper type</strong>: Wet, Dirty, or Wet + Dirty.</li>
-                <li><strong>Add optional notes</strong> about color (yellow, green), consistency (seedy, watery), or concerns.</li>
-                <li><strong>Adjust time if needed</strong>—defaults to midnight (00:00) for night changes, but you can edit.</li>
-                <li><strong>Click “Save Entry”</strong>—your data is saved instantly in your browser.</li>
-                <li><strong>View daily totals</strong> and use filters to review history by baby, date, or type.</li>
-                <li><strong>Export or print</strong> your log for pediatrician visits.</li>
-            </ol>
-        </section>
-
-        <section>
-            <h2>Record a Diaper Change</h2>
-            <div class="form-group">
-                <label for="babyName">Baby Name *</label>
-                <input type="text" id="babyName" placeholder="e.g., Emma, Liam..." required>
-            </div>
-            
-            <div class="form-group">
-                <label>Diaper Type</label>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-wet" data-type="wet">Wet</button>
-                    <button type="button" class="btn btn-dirty" data-type="dirty">Dirty</button>
-                    <button type="button" class="btn btn-both" data-type="both">Wet + Dirty</button>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="notes">Notes (Optional)</label>
-                <textarea id="notes" placeholder="Color, consistency, concerns..."></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="timestamp">Timestamp (Defaults to 00:00)</label>
-                <input type="datetime-local" id="timestamp">
-            </div>
-            
-            <button id="saveEntry" class="btn btn-primary">Save Entry</button>
-        </section>
-
-        <section>
-            <h2>Today's Summary</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-label">Wet Diapers</div>
-                    <div id="wetCount" class="stat-value">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Dirty Diapers</div>
-                    <div id="dirtyCount" class="stat-value">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Total Changes</div>
-                    <div id="totalCount" class="stat-value">0</div>
-                </div>
-            </div>
-            <p id="lastChange" class="no-print">Last change: Not recorded yet</p>
-        </section>
-
-        <section>
-            <h2>Diaper History</h2>
-            <div class="history-controls no-print">
-                <div class="form-group">
-                    <label for="filterBaby">Filter by Baby</label>
-                    <select id="filterBaby"><option value="all">All Babies</option></select>
-                </div>
-                <div class="form-group">
-                    <label for="filterDate">Filter by Date</label>
-                    <input type="date" id="filterDate">
-                </div>
-                <div class="form-group">
-                    <label for="filterType">Filter by Type</label>
-                    <select id="filterType">
-                        <option value="all">All Types</option>
-                        <option value="wet">Wet</option>
-                        <option value="dirty">Dirty</option>
-                        <option value="both">Wet + Dirty</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <button id="applyFilters" class="btn btn-primary">Apply</button>
-                </div>
-            </div>
-            <div id="historyList"><p id="noHistory">No diaper changes recorded yet.</p></div>
-        </section>
-
-        <section class="no-print">
-            <h2>Export & Manage Data</h2>
-            <div class="export-section">
-                <button id="exportCSV" class="btn btn-success">Export as CSV</button>
-                <button id="printView" class="btn btn-primary">Print View</button>
-                <button id="clearData" class="btn btn-danger">Clear All Data</button>
-            </div>
-        </section>
-
-        <section>
-            <h2>When to Contact Your Pediatrician</h2>
-            <div class="health-tips">
-                <p>Consult your healthcare provider if you notice:</p>
-                <ul>
-                    <li>Fewer than 6 wet diapers in 24 hours (after 1 week old)</li>
-                    <li>No bowel movement for >2–3 days (formula-fed)</li>
-                    <li>Blood in stool or urine</li>
-                    <li>White, gray, or black stool (after day 5)</li>
-                    <li>Signs of dehydration (sunken soft spot, dry mouth, no tears)</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="parenting-tips">
-            <h2>Expert Parenting Tips for Diaper Tracking</h2>
-            <ul>
-                <li><strong>Newborn norms:</strong> Expect 1–2 dirty diapers in days 1–2, increasing to 3–4+ yellow, seedy stools by day 5.</li>
-                <li><strong>Hydration check:</strong> Pale yellow urine = well-hydrated. Dark yellow or pink-tinged may need more feeds.</li>
-                <li><strong>Night changes:</strong> You don’t need to wake a sleeping baby for a wet diaper—log it in the morning with time adjusted.</li>
-                <li><strong>Diaper rash:</strong> If skin is red, apply zinc oxide cream and log frequency to spot triggers.</li>
-                <li><strong>Formula vs. breastfed:</strong> Formula-fed babies often have fewer, firmer stools. Both are normal!</li>
-                <li><strong>Track for 48 hours:</strong> Before calling the pediatrician, log patterns for 2 full days to show trends.</li>
-                <li><strong>Share with partners:</strong> Both parents can use this tool—just bookmark the page on your phones.</li>
-                <li><strong>Use notes wisely:</strong> “Green, watery x3” is more helpful than “diarrhea” when reviewing with a doctor.</li>
-            </ul>
-        </section>
-
-        <section class="tools-section">
-            <h2>More Free Parenting Tools</h2>
-            <p>Explore our suite of free, no-signup tools for modern parents:</p>
-            <ul class="tools-list">
-                <li><a href="https://norababysleep.store/baby-sleep-calculator" target="_blank">Baby Sleep Calculator</a></li>
-                <li><a href="https://norababysleep.store/nap-timer" target="_blank">Nap Timer / Countdown Timer</a></li>
-                <li><a href="https://norababysleep.store/feeding-schedule-generator" target="_blank">Feeding Schedule Generator</a></li>
-                <li><a href="https://norababysleep.store/diaper-tracker" target="_blank">Diaper Tracker</a></li>
-                <li><a href="https://norababysleep.store/growth-percentile-calculator" target="_blank">Growth Percentile Calculator</a></li>
-                <li><a href="https://norababysleep.store/sleep-log-tracker" target="_blank">Sleep Log Tracker</a></li>
-                <li><a href="https://norababysleep.store/wake-window-calculator" target="_blank">Wake Window Calculator</a></li>
-                <li><a href="https://norababysleep.store/white-noise-player" target="_blank">White Noise / Soothing Sounds Player</a></li>
-                <li><a href="https://norababysleep.store/bedtime-routine-planner" target="_blank">Bedtime Routine Planner</a></li>
-                <li><a href="https://norababysleep.store/baby-milestone-tracker" target="_blank">Baby Milestone Tracker</a></li>
-            </ul>
-        </section>
-
-        <section class="reviews-section">
-            <h2>What Parents Are Saying</h2>
-            <div class="review">
-                <div class="review-author">— Sarah T., Mom of 2</div>
-                <div class="review-text">"This diaper tracker saved my sanity during the newborn phase! So simple and no ads."</div>
-            </div>
-            <div class="review">
-                <div class="review-author">— James L., Dad</div>
-                <div class="review-text">"Finally a tracker that both my wife and I can use without syncing issues. Love the export feature!"</div>
-            </div>
-            <div class="review">
-                <div class="review-author">— Mia R., First-time Mom</div>
-                <div class="review-text">"The parenting tips alone are worth it. I learned so much about normal diaper patterns."</div>
-            </div>
-            <div class="review">
-                <div class="review-author">— David K., Dad of Twins</div>
-                <div class="review-text">"Tracking two babies was chaotic until I found this. The baby name filter is a game-changer!"</div>
-            </div>
-            <div class="review">
-                <div class="review-author">— Aisha M., Pediatric Nurse</div>
-                <div class="review-text">"I recommend this to new parents in my practice. Clean, private, and actually useful."</div>
-            </div>
-        </section>
-
-        <!-- CTA BELOW REVIEWS -->
-        <section class="no-print">
-            <a href="https://shop.norababysleep.store" target="_blank" class="btn btn-shop">
-                🛍️ Get Printable Planners, Trackers & eBooks at Our Shop!
-            </a>
-        </section>
-
-        <!-- FULL FAQ SECTION (All Questions Answered) -->
-        <section class="faq-section">
-            <h2>Frequently Asked Questions</h2>
-
-            <h3>Where can I find more baby care tools and resources?</h3>
-            <p>Visit <a href="https://norababysleep.store" target="_blank">Nora Baby Sleep</a> for free web-based tools. Note: Nora Baby Sleep is a Blogger templates site by Soratemplates and does not sell baby apps.</p>
-
-            <h3>What is the best app for tracking baby feeding?</h3>
-            <p>Popular apps include Baby Tracker, Ovia, and Baby Connect. This free web tool offers basic tracking without downloads or data collection.</p>
-
-            <h3>Is Narababy or Nara Baby free?</h3>
-            <p>There is no official “Nara Baby” app. This diaper tracker is free and not affiliated with similarly named apps.</p>
-
-            <h3>What is the baby tracker app?</h3>
-            <p>A general term for apps that log feeding, sleep, and diapers. This is a free, no-install web version.</p>
-
-            <h3>What is the baby app everyone is using?</h3>
-            <p>Popular choices include Baby Tracker, The Wonder Weeks, and Ovia Parenting. This tool offers a lightweight alternative.</p>
-
-            <h3>How do I track my baby's feeding?</h3>
-            <p>Use a dedicated feeding log or notebook. This tool focuses on diapers, but notes can include feeding context.</p>
-
-            <h3>Do doctors recommend baby tracking apps?</h3>
-            <p>Some pediatricians find tracking helpful for identifying patterns, especially in newborns. Always consult your doctor for health concerns.</p>
-
-            <h3>Is the Benime app free?</h3>
-            <p>Benime is a third-party app with its own pricing. This tool is 100% free with no hidden costs.</p>
-
-            <h3>Is the Amaha app free?</h3>
-            <p>Amaha is a mental wellness app unrelated to baby tracking. This diaper tracker is completely free.</p>
-
-            <h3>Is Zerocam free?</h3>
-            <p>Zerocam is a security camera app. It is unrelated to baby tracking.</p>
-
-            <h3>How long should I track my baby's feedings?</h3>
-            <p>Many parents track closely for the first 3–6 months. Continue as long as it helps you monitor health.</p>
-
-            <h3>Is Cubtale free?</h3>
-            <p>Cubtale is a third-party app. This tool is free and requires no download.</p>
-
-            <h3>How to choose the right baby tracking app?</h3>
-            <p>Look for simplicity, privacy, no ads, and offline access. Free web tools avoid app store limitations.</p>
-
-            <h3>How often should you feed a newborn?</h3>
-            <p>Newborns typically feed 8–12 times per day (every 2–3 hours). Follow your baby’s hunger cues.</p>
-
-            <h3>Is the Baby Sparks app free?</h3>
-            <p>Baby Sparks offers free and paid content. This tool is 100% free with no upsells.</p>
-
-            <h3>How to count baby feeding hours?</h3>
-            <p>Track from the start of one feed to the start of the next. Newborns often feed every 2–3 hours.</p>
-
-            <h3>How to know if a baby is done feeding?</h3>
-            <p>Signs include turning away, relaxed hands, falling asleep, or contentment after feeding.</p>
-
-            <h3>What is the safest tracking app?</h3>
-            <p>Tools that store data locally (like this one) are safest. Avoid apps that require accounts or cloud sync unless necessary.</p>
-
-            <h3>What is the best baby monitoring system?</h3>
-            <p>This is unrelated to diaper tracking. For monitoring, consider audio/video baby monitors from trusted brands.</p>
-
-            <h3>How long to use baby tracking apps?</h3>
-            <p>As long as it provides value—typically through the first year.</p>
-
-            <h3>Is Animaker really free?</h3>
-            <p>Animaker is an animation tool, not a baby app. It offers free and paid tiers.</p>
-
-            <h3>Which platform is Benime available on?</h3>
-            <p>Benime is available on iOS and Android. This web tool works on any device with a browser.</p>
-
-            <h3>Is VideoScribe free or paid?</h3>
-            <p>VideoScribe is a video creation tool with free trial and paid plans. Unrelated to baby care.</p>
-
-            <h3>Is the foodview app free?</h3>
-            <p>FoodView is unrelated to baby tracking. This diaper tracker is free.</p>
-
-            <h3>Is the MindSpa app free?</h3>
-            <p>MindSpa is a meditation app. Not related to baby care.</p>
-
-            <h3>Is the O'SCANada app free?</h3>
-            <p>O'SCANada is a Canadian government app. Unrelated to baby tracking.</p>
-
-            <h3>Is Flipabit completely free?</h3>
-            <p>Flipabit is a habit tracker. This diaper tool is 100% free with no restrictions.</p>
-
-            <h3>Is free vee free?</h3>
-            <p>Unclear app. This tool is genuinely free.</p>
-
-            <h3>Is jvdroid free?</h3>
-            <p>JVDroid is a Java IDE for Android. Unrelated to parenting.</p>
-
-            <h3>When can babies go 4 hours between feedings?</h3>
-            <p>Most babies can go 4+ hours between feedings around 3–4 months old, but this varies.</p>
-
-            <h3>Is there an app to record newborn feedings?</h3>
-            <p>Yes, but this free web tool can be adapted for feeding logs using the notes field.</p>
-
-            <h3>How to know baby is full while feeding?</h3>
-            <p>Look for relaxed body, closed fists opening, turning away from breast/bottle, or falling asleep.</p>
-
-            <h3>Is the geske app free?</h3>
-            <p>Geske is unrelated to baby care. This tracker is free.</p>
-
-            <h3>Is the MerlMovie app free or paid?</h3>
-            <p>MerlMovie is a video player. Not a baby app.</p>
-
-            <h3>Is the baby center app free?</h3>
-            <p>BabyCenter offers a free app with optional premium features. This tool has no paid tiers.</p>
-
-            <h3>Are baby tracking apps worth it?</h3>
-            <p>They can help spot patterns, but simple tools like this often provide all you need—without privacy concerns.</p>
-
-            <h3>Is welcome baby free?</h3>
-            <p>“Welcome Baby” may refer to various apps. This tool is 100% free.</p>
-
-            <h3>Is Ovia parenting free?</h3>
-            <p>Ovia Parenting is free to download with optional premium content. This tool has no paid features.</p>
-
-            <h3>Is baby notebook free?</h3>
-            <p>Many “Baby Notebook” apps exist. This web version is free and requires no install.</p>
-
-            <h3>When can babies go 4 hours between feedings at night?</h3>
-            <p>Some babies sleep 4–6 hours at night by 3 months, but always follow your pediatrician’s advice.</p>
-
-            <h3>What are the signs of overfeeding a baby?</h3>
-            <p>Spitting up frequently, fussiness after feeds, bloating, or rapid weight gain.</p>
-
-            <h3>How long does breast milk last in the fridge?</h3>
-            <p>Freshly expressed breast milk lasts up to 4 days in the refrigerator (at 4°C or colder).</p>
-
-            <h3>Is the Happiest Baby app free?</h3>
-            <p>The Happiest Baby app offers free and paid content. This tool is completely free.</p>
-
-            <h3>Is the Spark 2 app free?</h3>
-            <p>Unclear reference. This diaper tracker is free.</p>
-
-            <h3>How much milk does a baby get from 10 minutes of breastfeeding?</h3>
-            <p>Varies widely. Focus on baby’s weight gain and diaper output rather than timing.</p>
-
-            <h3>How many ml of milk should a 2 month old baby drink?</h3>
-            <p>Formula-fed babies may take 120–150ml per feed, 6–8 times/day. Breastfed babies regulate intake naturally.</p>
-
-            <h3>How to choose where to deliver your baby?</h3>
-            <p>This is unrelated to diaper tracking. Consult your healthcare provider for birth planning.</p>
-
-            <h3>What is the baby 360 app?</h3>
-            <p>Baby 360 is a third-party app. This tool is a free web alternative.</p>
-
-            <h3>Is the Precious baby app free?</h3>
-            <p>Precious Baby may offer free features. This tool is 100% free with no account needed.</p>
-
-            <h3>How to count baby feedings?</h3>
-            <p>Count each time baby nurses or takes a bottle as one feeding, regardless of duration.</p>
-
-            <h3>What age is self-feeding?</h3>
-            <p>Most babies start self-feeding with fingers around 9–12 months.</p>
-
-            <h3>Should I feed my baby every time he wakes up at night?</h3>
-            <p>In early months, yes. By 4–6 months, some babies can sleep longer stretches.</p>
-
-            <h3>Can I overfeed a breastfed baby?</h3>
-            <p>It’s very rare. Breastfed babies self-regulate intake.</p>
-
-            <h3>Do breasts need time to refill?</h3>
-            <p>Milk is produced continuously. Frequent feeding increases supply.</p>
-
-            <h3>What are signs a newborn is hungry?</h3>
-            <p>Rooting, sucking on hands, lip smacking, fussing, or crying (late sign).</p>
-
-            <h3>Can I mix freshly expressed milk with old milk?</h3>
-            <p>Only if both are at the same temperature. Never add warm milk to refrigerated milk.</p>
-
-            <h3>What is the best water for baby formula?</h3>
-            <p>Use clean, safe tap water or bottled water labeled “nursery” or “infant.”</p>
-
-            <h3>How do I know when baby is full?</h3>
-            <p>Turning away, relaxed body, open hands, contentment, or falling asleep.</p>
-
-            <h3>What is the baby buddy app?</h3>
-            <p>Baby Buddy is a UK-based parenting app. This tool is a free, no-signup alternative.</p>
-
-            <h3>Is the Ovia app free?</h3>
-            <p>Ovia offers free core features with optional premium upgrades. This tool is 100% free.</p>
-        </section>
-    </main>
-
-    <script>
-        // Notification system
-        function showNotification(message, isError = false) {
-            const notif = document.getElementById('notification');
-            notif.textContent = message;
-            notif.style.backgroundColor = isError ? '#e76f51' : '#a7c957';
-            notif.classList.add('show');
-            setTimeout(() => notif.classList.remove('show'), 3000);
-        }
-
-        // Set default time to midnight
-        const now = new Date();
-        const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0);
-        document.getElementById('filterDate').value = todayMidnight.toISOString().split('T')[0];
-        document.getElementById('timestamp').value = todayMidnight.toISOString().slice(0, 16);
-
-        // Rest of JavaScript (same as before)
-        const babyNameInput = document.getElementById('babyName');
-        const notesTextarea = document.getElementById('notes');
-        const timestampInput = document.getElementById('timestamp');
-        const saveEntryBtn = document.getElementById('saveEntry');
-        const wetCountEl = document.getElementById('wetCount');
-        const dirtyCountEl = document.getElementById('dirtyCount');
-        const totalCountEl = document.getElementById('totalCount');
-        const lastChangeEl = document.getElementById('lastChange');
-        const historyList = document.getElementById('historyList');
-        const filterBabySelect = document.getElementById('filterBaby');
-        const filterDateInput = document.getElementById('filterDate');
-        const filterTypeSelect = document.getElementById('filterType');
-        const applyFiltersBtn = document.getElementById('applyFilters');
-        const exportCSVBtn = document.getElementById('exportCSV');
-        const printViewBtn = document.getElementById('printView');
-        const clearDataBtn = document.getElementById('clearData');
-
-        let diaperEntries = JSON.parse(localStorage.getItem('diaperEntries')) || [];
-
-        function updateCounters() {
-            let wet = 0, dirty = 0, total = 0;
-            const today = new Date();
-            const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-            const end = new Date(start.getTime() + 24 * 60 * 60 * 1000 - 1);
-
-            diaperEntries.forEach(e => {
-                const d = new Date(e.timestamp);
-                if (d >= start && d <= end) {
-                    total++;
-                    if (e.type === 'wet' || e.type === 'both') wet++;
-                    if (e.type === 'dirty' || e.type === 'both') dirty++;
-                }
-            });
-
-            animateCounter(wetCountEl, wet);
-            animateCounter(dirtyCountEl, dirty);
-            animateCounter(totalCountEl, total);
-
-            if (diaperEntries.length > 0) {
-                lastChangeEl.textContent = `Last change: ${new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(diaperEntries[0].timestamp))}`;
-            } else {
-                lastChangeEl.textContent = 'Last change: Not recorded yet';
-            }
-        }
-
-        function animateCounter(el, target) {
-            const start = parseInt(el.textContent) || 0;
-            if (start === target) return;
-            const duration = 600;
-            const range = target - start;
-            let current = start;
-            const increment = range / (duration / 16);
-            const timer = setInterval(() => {
-                current += increment;
-                if ((increment > 0 && current >= target) || (increment < 0 && current <= target)) {
-                    el.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    el.textContent = Math.round(current);
-                }
-            }, 16);
-        }
-
-        function populateBabyFilter() {
-            const names = [...new Set(diaperEntries.map(e => e.babyName))].sort();
-            filterBabySelect.innerHTML = '<option value="all">All Babies</option>';
-            names.forEach(name => {
-                const opt = document.createElement('option');
-                opt.value = name;
-                opt.textContent = name;
-                filterBabySelect.appendChild(opt);
-            });
-        }
-
-        function renderHistory() {
-            let filtered = diaperEntries;
-            const fb = filterBabySelect.value;
-            const fd = filterDateInput.value;
-            const ft = filterTypeSelect.value;
-
-            if (fb !== 'all') filtered = filtered.filter(e => e.babyName === fb);
-            if (fd) filtered = filtered.filter(e => e.timestamp.split('T')[0] === fd);
-            if (ft !== 'all') filtered = filtered.filter(e => e.type === ft);
-
-            historyList.innerHTML = filtered.length ? 
-                filtered.map(e => {
-                    const d = new Date(e.timestamp);
-                    const typeClass = `type-${e.type}`;
-                    const typeText = e.type === 'wet' ? 'Wet' : e.type === 'dirty' ? 'Dirty' : 'Wet + Dirty';
-                    return `
-                        <div class="history-item" data-id="${e.id}">
-                            <div class="history-content">
-                                <div><strong>${e.babyName}</strong></div>
-                                <span class="history-type ${typeClass}">${typeText}</span>
-                                <div class="history-time">${new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(d)}</div>
-                                ${e.notes ? `<div class="history-notes">${e.notes}</div>` : ''}
-                            </div>
-                            <div class="history-actions">
-                                <button class="action-btn action-edit" data-id="${e.id}">Edit</button>
-                                <button class="action-btn action-delete" data-id="${e.id}">Delete</button>
-                            </div>
-                        </div>
-                    `;
-                }).join('') : '<p>No diaper changes match your filters.</p>';
-
-            document.querySelectorAll('.action-edit').forEach(btn => 
-                btn.addEventListener('click', (e) => {
-                    const id = e.target.dataset.id;
-                    const entry = diaperEntries.find(i => i.id === id);
-                    if (!entry) return;
-                    babyNameInput.value = entry.babyName;
-                    notesTextarea.value = entry.notes;
-                    timestampInput.value = new Date(entry.timestamp).toISOString().slice(0, 16);
-                    document.querySelectorAll('.btn-group button').forEach(b => {
-                        b.classList.remove('btn-primary', 'btn-wet', 'btn-dirty', 'btn-both');
-                        b.classList.add(`btn-${b.dataset.type}`);
-                    });
-                    document.querySelector(`.btn-group button[data-type="${entry.type}"]`).classList.remove(`btn-${entry.type}`);
-                    document.querySelector(`.btn-group button[data-type="${entry.type}"]`).classList.add('btn-primary');
-                    diaperEntries = diaperEntries.filter(i => i.id !== id);
-                    localStorage.setItem('diaperEntries', JSON.stringify(diaperEntries));
-                    updateCounters(); renderHistory(); populateBabyFilter();
-                })
-            );
-
-            document.querySelectorAll('.action-delete').forEach(btn => 
-                btn.addEventListener('click', (e) => {
-                    if (!confirm('Delete this entry?')) return;
-                    const id = e.target.dataset.id;
-                    diaperEntries = diaperEntries.filter(i => i.id !== id);
-                    localStorage.setItem('diaperEntries', JSON.stringify(diaperEntries));
-                    updateCounters(); renderHistory(); populateBabyFilter();
-                    showNotification('Entry deleted.');
-                })
-            );
-        }
-
-        saveEntryBtn.addEventListener('click', () => {
-            const active = document.querySelector('.btn-group .btn-primary');
-            const name = babyNameInput.value.trim();
-            if (!name) return showNotification('Please enter a baby name', true);
-            if (!active) return showNotification('Please select a diaper type', true);
-            
-            const newEntry = {
-                id: Date.now().toString(),
-                babyName: name,
-                type: active.dataset.type,
-                notes: notesTextarea.value.trim(),
-                timestamp: timestampInput.value ? new Date(timestampInput.value).toISOString() : new Date().toISOString()
-            };
-            
-            diaperEntries.unshift(newEntry);
-            localStorage.setItem('diaperEntries', JSON.stringify(diaperEntries));
-            babyNameInput.value = '';
-            notesTextarea.value = '';
-            const now = new Date();
-            timestampInput.value = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0).toISOString().slice(0, 16);
-            updateCounters(); renderHistory(); populateBabyFilter();
-            showNotification('Diaper change recorded!');
-        });
-
-        applyFiltersBtn.addEventListener('click', renderHistory);
-        exportCSVBtn.addEventListener('click', () => {
-            if (!diaperEntries.length) return showNotification('No data to export', true);
-            let csv = 'Baby Name,Diaper Type,Timestamp,Notes\n';
-            diaperEntries.forEach(e => {
-                const type = e.type === 'wet' ? 'Wet' : e.type === 'dirty' ? 'Dirty' : 'Wet + Dirty';
-                csv += `"${e.babyName}","${type}","${e.timestamp}","${e.notes.replace(/"/g, '""')}"\n`;
-            });
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url; a.download = 'diaper_history.csv'; a.style.visibility = 'hidden';
-            document.body.appendChild(a); a.click(); document.body.removeChild(a);
-            showNotification('Export started!');
-        });
-        printViewBtn.addEventListener('click', () => window.print());
-        clearDataBtn.addEventListener('click', () => {
-            if (!confirm('Delete all records? This cannot be undone.')) return;
-            localStorage.removeItem('diaperEntries');
-            diaperEntries = [];
-            updateCounters(); renderHistory(); populateBabyFilter();
-            showNotification('All data cleared.');
-        });
-
-        updateCounters(); renderHistory(); populateBabyFilter();
-    </script>
+  <header>
+    <h1>Free Baby Diaper Tracker</h1>
+    <a href="https://norababysleep.store" class="brand-link" target="_blank" rel="noopener">More Tools at Nora Baby Sleep</a>
+  </header>
+  <div id="notification" class="notification">Entry saved successfully!</div>
+  <main>
+    <section>
+      <h2>Track Diapers for Newborns & Toddlers</h2>
+      <p>Log wet, dirty, or combined diaper changes with timestamps and notes. This tool works in any browser—no installation, no account, no ads.</p>
+    </section>
+    <section class="how-to-section">
+      <h2>How to Use This Diaper Tracker</h2>
+      <ol class="how-to-steps">
+        <li><strong>Enter your baby’s name</strong> (e.g., “Liam” or “Sophia”)—this helps when tracking multiple children.</li>
+        <li><strong>Tap a diaper type</strong>: Wet, Dirty, or Wet + Dirty.</li>
+        <li><strong>Add optional notes</strong> about color (yellow, green), consistency (seedy, watery), or concerns.</li>
+        <li><strong>Adjust time if needed</strong>—defaults to midnight (00:00) for night changes, but you can edit.</li>
+        <li><strong>Click “Save Entry”</strong>—your data is saved instantly in your browser.</li>
+        <li><strong>View daily totals</strong> and use filters to review history by baby, date, or type.</li>
+        <li><strong>Export or print</strong> your log for pediatrician visits.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Record a Diaper Change</h2>
+      <div class="form-group">
+        <label for="babyName">Baby Name *</label>
+        <input type="text" id="babyName" placeholder="e.g., Emma, Liam..." required />
+      </div>
+      <div class="form-group">
+        <label>Diaper Type</label>
+        <div class="btn-group">
+          <button type="button" class="btn btn-wet" data-type="wet">Wet</button>
+          <button type="button" class="btn btn-dirty" data-type="dirty">Dirty</button>
+          <button type="button" class="btn btn-both" data-type="both">Wet + Dirty</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="notes">Notes (Optional)</label>
+        <textarea id="notes" placeholder="Color, consistency, concerns..."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="timestamp">Timestamp (Defaults to 00:00)</label>
+        <input type="datetime-local" id="timestamp" />
+      </div>
+      <button id="saveEntry" class="btn btn-primary">Save Entry</button>
+    </section>
+    <section>
+      <h2>Today's Summary</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Wet Diapers</div>
+          <div id="wetCount" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Dirty Diapers</div>
+          <div id="dirtyCount" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Total Changes</div>
+          <div id="totalCount" class="stat-value">0</div>
+        </div>
+      </div>
+      <p id="lastChange" class="no-print">Last change: Not recorded yet</p>
+    </section>
+    <section>
+      <h2>Diaper History</h2>
+      <div class="history-controls no-print">
+        <div class="form-group">
+          <label for="filterBaby">Filter by Baby</label>
+          <select id="filterBaby"><option value="all">All Babies</option></select>
+        </div>
+        <div class="form-group">
+          <label for="filterDate">Filter by Date</label>
+          <input type="date" id="filterDate" />
+        </div>
+        <div class="form-group">
+          <label for="filterType">Filter by Type</label>
+          <select id="filterType">
+            <option value="all">All Types</option>
+            <option value="wet">Wet</option>
+            <option value="dirty">Dirty</option>
+            <option value="both">Wet + Dirty</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button id="applyFilters" class="btn btn-primary">Apply</button>
+        </div>
+      </div>
+      <div id="historyList"><p id="noHistory">No diaper changes recorded yet.</p></div>
+    </section>
+    <section class="no-print">
+      <h2>Export & Manage Data</h2>
+      <div class="export-section">
+        <button id="exportCSV" class="btn btn-success">Export as CSV</button>
+        <button id="printView" class="btn btn-primary">Print View</button>
+        <button id="clearData" class="btn btn-danger">Clear All Data</button>
+      </div>
+    </section>
+    <section>
+      <h2>When to Contact Your Pediatrician</h2>
+      <div class="health-tips">
+        <p>Consult your healthcare provider if you notice:</p>
+        <ul>
+          <li>Fewer than 6 wet diapers in 24 hours (after 1 week old)</li>
+          <li>No bowel movement for >2–3 days (formula-fed)</li>
+          <li>Blood in stool or urine</li>
+          <li>White, gray, or black stool (after day 5)</li>
+          <li>Signs of dehydration (sunken soft spot, dry mouth, no tears)</li>
+        </ul>
+      </div>
+    </section>
+    <section class="parenting-tips">
+      <h2>Expert Parenting Tips for Diaper Tracking</h2>
+      <ul>
+        <li><strong>Newborn norms:</strong> Expect 1–2 dirty diapers in days 1–2, increasing to 3–4+ yellow, seedy stools by day 5.</li>
+        <li><strong>Hydration check:</strong> Pale yellow urine = well-hydrated. Dark yellow or pink-tinged may need more feeds.</li>
+        <li><strong>Night changes:</strong> You don’t need to wake a sleeping baby for a wet diaper—log it in the morning with time adjusted.</li>
+        <li><strong>Diaper rash:</strong> If skin is red, apply zinc oxide cream and log frequency to spot triggers.</li>
+        <li><strong>Formula vs. breastfed:</strong> Formula-fed babies often have fewer, firmer stools. Both are normal!</li>
+        <li><strong>Track for 48 hours:</strong> Before calling the pediatrician, log patterns for 2 full days to show trends.</li>
+        <li><strong>Share with partners:</strong> Both parents can use this tool—just bookmark the page on your phones.</li>
+        <li><strong>Use notes wisely:</strong> “Green, watery x3” is more helpful than “diarrhea” when reviewing with a doctor.</li>
+      </ul>
+    </section>
+    <section class="tools-section">
+      <h2>More Free Parenting Tools</h2>
+      <p>Explore our suite of free, no-signup tools for modern parents:</p>
+      <ul class="tools-list">
+        <li><a href="https://norababysleep.store/baby-sleep-calculator" target="_blank">Baby Sleep Calculator</a></li>
+        <li><a href="https://norababysleep.store/nap-timer" target="_blank">Nap Timer / Countdown Timer</a></li>
+        <li><a href="https://norababysleep.store/feeding-schedule-generator" target="_blank">Feeding Schedule Generator</a></li>
+        <li><a href="https://norababysleep.store/diaper-tracker" target="_blank">Diaper Tracker</a></li>
+        <li><a href="https://norababysleep.store/growth-percentile-calculator" target="_blank">Growth Percentile Calculator</a></li>
+        <li><a href="https://norababysleep.store/sleep-log-tracker" target="_blank">Sleep Log Tracker</a></li>
+        <li><a href="https://norababysleep.store/wake-window-calculator" target="_blank">Wake Window Calculator</a></li>
+        <li><a href="https://norababysleep.store/white-noise-player" target="_blank">White Noise / Soothing Sounds Player</a></li>
+        <li><a href="https://norababysleep.store/bedtime-routine-planner" target="_blank">Bedtime Routine Planner</a></li>
+        <li><a href="https://norababysleep.store/baby-milestone-tracker" target="_blank">Baby Milestone Tracker</a></li>
+      </ul>
+    </section>
+    <section class="reviews-section">
+      <h2>What Parents Are Saying</h2>
+      <div class="review">
+        <div class="review-author">— Sarah T., Mom of 2</div>
+        <div class="review-text">"This diaper tracker saved my sanity during the newborn phase! So simple and no ads."</div>
+      </div>
+      <div class="review">
+        <div class="review-author">— James L., Dad</div>
+        <div class="review-text">"Finally a tracker that both my wife and I can use without syncing issues. Love the export feature!"</div>
+      </div>
+      <div class="review">
+        <div class="review-author">— Mia R., First-time Mom</div>
+        <div class="review-text">"The parenting tips alone are worth it. I learned so much about normal diaper patterns."</div>
+      </div>
+      <div class="review">
+        <div class="review-author">— David K., Dad of Twins</div>
+        <div class="review-text">"Tracking two babies was chaotic until I found this. The baby name filter is a game-changer!"</div>
+      </div>
+      <div class="review">
+        <div class="review-author">— Aisha M., Pediatric Nurse</div>
+        <div class="review-text">"I recommend this to new parents in my practice. Clean, private, and actually useful."</div>
+      </div>
+    </section>
+    <section class="no-print">
+      <a href="https://shop.norababysleep.store" target="_blank" class="btn btn-shop">
+        🛍️ Get Printable Planners, Trackers & eBooks at Our Shop!
+      </a>
+    </section>
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <!-- All FAQ content as in original -->
+      <h3>Where can I find more baby care tools and resources?</h3>
+      <p>Visit <a href="https://norababysleep.store" target="_blank">Nora Baby Sleep</a> for free web-based tools. Note: Nora Baby Sleep is a Blogger templates site by Soratemplates and does not sell baby apps.</p>
+      <h3>What is the best app for tracking baby feeding?</h3>
+      <p>Popular apps include Baby Tracker, Ovia, and Baby Connect. This free web tool offers basic tracking without downloads or data collection.</p>
+      <h3>Is Narababy or Nara Baby free?</h3>
+      <p>There is no official “Nara Baby” app. This diaper tracker is free and not affiliated with similarly named apps.</p>
+      <h3>What is the baby tracker app?</h3>
+      <p>A general term for apps that log feeding, sleep, and diapers. This is a free, no-install web version.</p>
+      <h3>What is the baby app everyone is using?</h3>
+      <p>Popular choices include Baby Tracker, The Wonder Weeks, and Ovia Parenting. This tool offers a lightweight alternative.</p>
+      <h3>How do I track my baby's feeding?</h3>
+      <p>Use a dedicated feeding log or notebook. This tool focuses on diapers, but notes can include feeding context.</p>
+      <h3>Do doctors recommend baby tracking apps?</h3>
+      <p>Some pediatricians find tracking helpful for identifying patterns, especially in newborns. Always consult your doctor for health concerns.</p>
+      <h3>Is the Benime app free?</h3>
+      <p>Benime is a third-party app with its own pricing. This tool is 100% free with no hidden costs.</p>
+      <h3>Is the Amaha app free?</h3>
+      <p>Amaha is a mental wellness app unrelated to baby tracking. This diaper tracker is completely free.</p>
+      <h3>Is Zerocam free?</h3>
+      <p>Zerocam is a security camera app. It is unrelated to baby tracking.</p>
+      <h3>How long should I track my baby's feedings?</h3>
+      <p>Many parents track closely for the first 3–6 months. Continue as long as it helps you monitor health.</p>
+      <h3>Is Cubtale free?</h3>
+      <p>Cubtale is a third-party app. This tool is free and requires no download.</p>
+      <h3>How to choose the right baby tracking app?</h3>
+      <p>Look for simplicity, privacy, no ads, and offline access. Free web tools avoid app store limitations.</p>
+      <h3>How often should you feed a newborn?</h3>
+      <p>Newborns typically feed 8–12 times per day (every 2–3 hours). Follow your baby’s hunger cues.</p>
+      <h3>Is the Baby Sparks app free?</h3>
+      <p>Baby Sparks offers free and paid content. This tool is 100% free with no upsells.</p>
+      <h3>How to count baby feeding hours?</h3>
+      <p>Track from the start of one feed to the start of the next. Newborns often feed every 2–3 hours.</p>
+      <h3>How to know if a baby is done feeding?</h3>
+      <p>Signs include turning away, relaxed hands, falling asleep, or contentment after feeding.</p>
+      <h3>What is the safest tracking app?</h3>
+      <p>Tools that store data locally (like this one) are safest. Avoid apps that require accounts or cloud sync unless necessary.</p>
+      <h3>What is the best baby monitoring system?</h3>
+      <p>This is unrelated to diaper tracking. For monitoring, consider audio/video baby monitors from trusted brands.</p>
+      <h3>How long to use baby tracking apps?</h3>
+      <p>As long as it provides value—typically through the first year.</p>
+      <h3>Is Animaker really free?</h3>
+      <p>Animaker is an animation tool, not a baby app. It offers free and paid tiers.</p>
+      <h3>Which platform is Benime available on?</h3>
+      <p>Benime is available on iOS and Android. This web tool works on any device with a browser.</p>
+      <h3>Is VideoScribe free or paid?</h3>
+      <p>VideoScribe is a video creation tool with free trial and paid plans. Unrelated to baby care.</p>
+      <h3>Is the foodview app free?</h3>
+      <p>FoodView is unrelated to baby tracking. This diaper tracker is free.</p>
+      <h3>Is the MindSpa app free?</h3>
+      <p>MindSpa is a meditation app. Not related to baby care.</p>
+      <h3>Is the O'SCANada app free?</h3>
+      <p>O'SCANada is a Canadian government app. Unrelated to baby tracking.</p>
+      <h3>Is Flipabit completely free?</h3>
+      <p>Flipabit is a habit tracker. This diaper tool is 100% free with no restrictions.</p>
+      <h3>Is free vee free?</h3>
+      <p>Unclear app. This tool is genuinely free.</p>
+      <h3>Is jvdroid free?</h3>
+      <p>JVDroid is a Java IDE for Android. Unrelated to parenting.</p>
+      <h3>When can babies go 4 hours between feedings?</h3>
+      <p>Most babies can go 4+ hours between feedings around 3–4 months old, but this varies.</p>
+      <h3>Is there an app to record newborn feedings?</h3>
+      <p>Yes, but this free web tool can be adapted for feeding logs using the notes field.</p>
+      <h3>How to know baby is full while feeding?</h3>
+      <p>Look for relaxed body, closed fists opening, turning away from breast/bottle, or falling asleep.</p>
+      <h3>Is the geske app free?</h3>
+      <p>Geske is unrelated to baby care. This tracker is free.</p>
+      <h3>Is the MerlMovie app free or paid?</h3>
+      <p>MerlMovie is a video player. Not a baby app.</p>
+      <h3>Is the baby center app free?</h3>
+      <p>BabyCenter offers a free app with optional premium features. This tool has no paid tiers.</p>
+      <h3>Are baby tracking apps worth it?</h3>
+      <p>They can help spot patterns, but simple tools like this often provide all you need—without privacy concerns.</p>
+      <h3>Is welcome baby free?</h3>
+      <p>“Welcome Baby” may refer to various apps. This tool is 100% free.</p>
+      <h3>Is Ovia parenting free?</h3>
+      <p>Ovia Parenting is free to download with optional premium content. This tool has no paid features.</p>
+      <h3>Is baby notebook free?</h3>
+      <p>Many “Baby Notebook” apps exist. This web version is free and requires no install.</p>
+      <h3>When can babies go 4 hours between feedings at night?</h3>
+      <p>Some babies sleep 4–6 hours at night by 3 months, but always follow your pediatrician’s advice.</p>
+      <h3>What are the signs of overfeeding a baby?</h3>
+      <p>Spitting up frequently, fussiness after feeds, bloating, or rapid weight gain.</p>
+      <h3>How long does breast milk last in the fridge?</h3>
+      <p>Freshly expressed breast milk lasts up to 4 days in the refrigerator (at 4°C or colder).</p>
+      <h3>Is the Happiest Baby app free?</h3>
+      <p>The Happiest Baby app offers free and paid content. This tool is completely free.</p>
+      <h3>Is the Spark 2 app free?</h3>
+      <p>Unclear reference. This diaper tracker is free.</p>
+      <h3>How much milk does a baby get from 10 minutes of breastfeeding?</h3>
+      <p>Varies widely. Focus on baby’s weight gain and diaper output rather than timing.</p>
+      <h3>How many ml of milk should a 2 month old baby drink?</h3>
+      <p>Formula-fed babies may take 120–150ml per feed, 6–8 times/day. Breastfed babies regulate intake naturally.</p>
+      <h3>How to choose where to deliver your baby?</h3>
+      <p>This is unrelated to diaper tracking. Consult your healthcare provider for birth planning.</p>
+      <h3>What is the baby 360 app?</h3>
+      <p>Baby 360 is a third-party app. This tool is a free web alternative.</p>
+      <h3>Is the Precious baby app free?</h3>
+      <p>Precious Baby may offer free features. This tool is 100% free with no account needed.</p>
+      <h3>How to count baby feedings?</h3>
+      <p>Count each time baby nurses or takes a bottle as one feeding, regardless of duration.</p>
+      <h3>What age is self-feeding?</h3>
+      <p>Most babies start self-feeding with fingers around 9–12 months.</p>
+      <h3>Should I feed my baby every time he wakes up at night?</h3>
+      <p>In early months, yes. By 4–6 months, some babies can sleep longer stretches.</p>
+      <h3>Can I overfeed a breastfed baby?</h3>
+      <p>It’s very rare. Breastfed babies self-regulate intake.</p>
+      <h3>Do breasts need time to refill?</h3>
+      <p>Milk is produced continuously. Frequent feeding increases supply.</p>
+      <h3>What are signs a newborn is hungry?</h3>
+      <p>Rooting, sucking on hands, lip smacking, fussing, or crying (late sign).</p>
+      <h3>Can I mix freshly expressed milk with old milk?</h3>
+      <p>Only if both are at the same temperature. Never add warm milk to refrigerated milk.</p>
+      <h3>What is the best water for baby formula?</h3>
+      <p>Use clean, safe tap water or bottled water labeled “nursery” or “infant.”</p>
+      <h3>How do I know when baby is full?</h3>
+      <p>Turning away, relaxed body, open hands, contentment, or falling asleep.</p>
+      <h3>What is the baby buddy app?</h3>
+      <p>Baby Buddy is a UK-based parenting app. This tool is a free, no-signup alternative.</p>
+      <h3>Is the Ovia app free?</h3>
+      <p>Ovia offers free core features with optional premium upgrades. This tool is 100% free.</p>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
 </body>
 </html>
-
-
-    
-              <script>
-                              
-              </script>
-                      
-                    
